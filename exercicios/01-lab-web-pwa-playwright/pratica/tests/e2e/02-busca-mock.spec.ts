@@ -30,8 +30,8 @@ test.describe('Busca + network mocking', () => {
   // 🧑‍🏫 1. FÁCIL — só navegar: a tela abriu?
   test('1. abrir a tela de busca', async ({ page }) => {
     await page.goto('/search');
-    //await expect(page.getByTestId('search-screen')).toBeVisible() //SEM ERROS
-    await expect(page.getByTestId('search-invalido')).toBeVisible() //COM ERROS
+    await expect(page.getByTestId('search-screen')).toBeVisible() //SEM ERROS
+    //await expect(page.getByTestId('search-invalido')).toBeVisible() //COM ERROS
 
 
     // TODO: espere a tela ficar visível.
