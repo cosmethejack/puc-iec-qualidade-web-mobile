@@ -34,49 +34,50 @@ base.describe('Bloco D — conta nova (sem sessão)', () => {
   //    5. NEGATIVO: entre com a senha "errada" → login-error-message mostra
   //       "E-mail ou senha inválidos"
   //    6. POSITIVO: entre com "abcd" → sai do /login e, em '/qa', o logout-button aparece
-base('D1. cadastro → sair → senha errada → entrar com a conta nova', async ({ page }) => {
-  const email = `aluna.${Date.now()}@teste.com`;
+  base('D1. cadastro → sair → senha errada → entrar com a conta nova', async ({ page }) => {
+    const email = `aluna.${Date.now()}@teste.com`;
 
-  await page.goto('/login');
+    await page.goto('/login');
 
-  await page.getByTestId('auth-mode-toggle').click();
+    await page.getByTestId('auth-mode-toggle').click();
 
-  await page.getByTestId('register-name-input').fill('Aluna Teste');
-  await page.getByTestId('register-email-input').fill(email);
-  await page.getByTestId('register-password-input').fill('abcd');
+    await page.getByTestId('register-name-input').fill('Aluna Teste');
+    await page.getByTestId('register-email-input').fill(email);
+    await page.getByTestId('register-password-input').fill('abcd');
 
-  await page.getByRole('button', { name: /Criar|Cadastrar/i }).click();
+    //await page.getByRole('button', { name: /Criar|Cadastrar/i }).click();
+    await page.getByTestId('register-submit-button').click();
 
-  await page.waitForURL((url) => !url.pathname.startsWith('/login'));
+    await page.waitForURL((url) => !url.pathname.startsWith('/login'));
 
-  await page.goto('/qa');
+    await page.goto('/qa');
 
-  await page.getByTestId('logout-button').click();
+    await page.getByTestId('logout-button').click();
 
-  await expect(page).toHaveURL(/login/);
+    await expect(page).toHaveURL(/login/);
 
-  await page.getByTestId('login-email-input').fill(email);
-  await page.getByTestId('login-password-input').fill('errada');
+    await page.getByTestId('login-email-input').fill(email);
+    await page.getByTestId('login-password-input').fill('errada');
 
-  await page.getByRole('button', { name: /Entrar/i }).click();
+    await page.getByRole('button', { name: /Entrar/i }).click();
 
-  await expect(
-    page.getByTestId('login-error-message')
-  ).toContainText('E-mail ou senha inválidos');
+    await expect(
+      page.getByTestId('login-error-message')
+    ).toContainText('E-mail ou senha inválidos');
 
-  await page.getByTestId('login-email-input').fill(email);
-  await page.getByTestId('login-password-input').fill('abcd');
+    await page.getByTestId('login-email-input').fill(email);
+    await page.getByTestId('login-password-input').fill('abcd');
 
-  await page.getByRole('button', { name: /Entrar/i }).click();
+    await page.getByRole('button', { name: /Entrar/i }).click();
 
-  await page.waitForURL((url) => !url.pathname.startsWith('/login'));
+    await page.waitForURL((url) => !url.pathname.startsWith('/login'));
 
-  await page.goto('/qa');
+    await page.goto('/qa');
 
-  await expect(
-    page.getByTestId('logout-button')
-  ).toBeVisible();
-});
+    await expect(
+      page.getByTestId('logout-button')
+    ).toBeVisible();
+  });
 });
 
 // ── D2 🟡 · ≈ 7 min ──────────────────────────────────────────────────────────
