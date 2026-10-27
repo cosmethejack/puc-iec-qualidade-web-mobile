@@ -1,19 +1,16 @@
-# ✅ AVALIATIVO — NÍVEL 3: chama o fragmento parametrizado 2 vezes com termos diferentes.
+# ✅ AVALIATIVO — NÍVEL 3: o MESMO fragmento chamado com dois termos diferentes (env no runFlow).
 appId: com.puciec.cinefav
 tags:
   - regressao
 ---
 - launchApp
 - runFlow: _fragments/abrir-busca.yaml
-
 - runFlow:
     file: _fragments/buscar.yaml
     env:
       TERM: "Matrix"
-
 - tapOn:
     id: "search-clear-button"
-
 - runFlow:
     file: _fragments/buscar.yaml
     env:
