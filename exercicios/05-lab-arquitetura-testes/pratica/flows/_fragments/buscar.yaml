@@ -4,7 +4,7 @@ appId: com.puciec.cinefav
 ---
 - tapOn:
     id: "search-input"
-- eraseText
 - inputText: "${TERM}"
-- assertVisible:
-    text: "${TERM}"
+- tapOn:
+    id: "search-button"
+- assertVisible: "${TERM}"
