@@ -1,15 +1,40 @@
-# RESPOSTAS — Lab Arquitetura de Testes
+# RESPOSTAS — Lab Playwright PWA
 
-Responda com suas palavras (2–4 linhas cada). Vale 1 ponto, avaliado manualmente.
+> Preencha **depois** de fazer os desafios (≈ 10 min). Respostas **curtas e suas** (3 a 6 linhas cada).
+> Não precisa de texto bonito — precisa mostrar que você **entendeu o porquê**, não só o como.
+> Vale 1 ponto (correção manual, no Canvas).
 
-1. Fragmento
-A leitura passou de imperativa (passo a passo de preenchimento) para declarativa (história do usuário: "faz login e favorita X"). Se a tela ou a regra de login mudar, ajustamos apenas o arquivo _fragments/login.yaml em um único lugar, sem precisar alterar dezenas de testes que dependem do login.
+**Nome:** <seu nome>
+**Login do GitHub:** <seu login>
+**Usei IA?** ( ) não · ( ) sim — qual ferramenta e pra quê: <…>  *(usar é permitido; esconder não)*
 
-2. Fragmento × POM
-O _fragments/login.yaml encapsula uma ação completa e reutilizável (o fluxo de logar), enquanto o elements/login.js armazena apenas o mapeamento dos seletores/IDs da interface. Usa-se o Page Object (.js) para centralizar os seletores da tela e o Fragmento (.yaml) para reutilizar cenários/passos de testes recorrentes.
+---
 
-3. Fragmento parametrizado
-Reutilizar o buscar.yaml passando o parâmetro TERM elimina a duplicação de código (princípio DRY). Se a forma como a busca é realizada no app mudar no futuro, alteramos a lógica do fragmento uma única vez em vez de dar manutenção em múltiplos testes copiados.
+### 1. Por que `await expect(locator).toHaveCount(12)` é melhor que `expect(await locator.count()).toBe(12)`?
+*(Dica: o que cada um faz se a lista ainda estiver carregando? Pense no Bloco B e no F.)*
 
-4. Um limite
-Essa arquitetura não ajuda em fluxos dinâmicos com regras de negócio muito complexas, condicionais (if/else) ou validações de dados complexas em tempo de execução. Nesses cenários, a abstração em YAML/JS simples do Maestro pode criar dependências ocultas e dificultar o depuramento (debug) quando uma falha ocorre no meio de fragmentos aninhados.
+<sua resposta>
+
+### 2. Por que o Bloco C desliga o Service Worker (`serviceWorkers: 'block'`) e o Bloco E mantém ligado?
+*(Dica: o que o SW faz com o `fetch` do catálogo? E o que o teste offline precisa do SW?)*
+
+<sua resposta>
+
+### 3. No D3 você semeou favoritos pelo `localStorage` em vez de clicar nos corações. Qual o ganho? Qual o risco? Cite **um caso em que você NÃO semearia**.
+*(Dica: o que o clique prova que a semente não prova?)*
+
+<sua resposta>
+
+### 4. Bloco F: quais eram os defeitos dos testes instáveis (F1a, F1b e F1d) e como você **provou** que ficaram estáveis?
+*(Cite os comandos que rodou e o resultado.)*
+
+<sua resposta>
+
+### 5. Seus mocks do Bloco C (C1–C4) dão confiança em quê — e **que bug real passaria batido** mesmo com todos eles verdes?
+*(Dica: o que muda quando o backend é de verdade? Pense em contrato, formato, lentidão.)*
+
+<sua resposta>
+
+### 6. Missão livre: por que você escolheu **esse** fluxo? Que risco do produto ele cobre? O que ficou **sem** teste e por quê?
+
+<sua resposta>
