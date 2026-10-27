@@ -6,4 +6,5 @@ appId: com.puciec.cinefav
     id: "search-input"
 - eraseText
 - inputText: "${TERM}"
-- assertVisible: "${TERM}"
+- assertVisible:
+    text: "${TERM}"
