@@ -5,12 +5,15 @@ tags:
 ---
 - launchApp
 - runFlow: _fragments/abrir-busca.yaml
+
 - runFlow:
     file: _fragments/buscar.yaml
     env:
       TERM: "Matrix"
+
 - tapOn:
     id: "search-clear-button"
+
 - runFlow:
     file: _fragments/buscar.yaml
     env:
