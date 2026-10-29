@@ -10,17 +10,18 @@ export default defineConfig({
   reporter: 'html',
 
   use: {
-    baseURL: 'http://localhost:5174',
+    baseURL: 'http://127.0.0.1:5174',
     trace: 'on-first-retry',
   },
 
-  /* Sobe e aguarda o servidor da aplicação */
+  /* Configuração do servidor web para CI */
   webServer: {
-    // Adicionado --host para garantir binding em 0.0.0.0 no Linux do CI
-    command: 'npx vite --host 0.0.0.0 --port 5174',
-    url: 'http://localhost:5174',
+    command: 'npx vite --host 127.0.0.1 --port 5174',
+    url: 'http://127.0.0.1:5174',
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
+    stdout: 'pipe',
+    stderr: 'pipe',
   },
 
   projects: [
