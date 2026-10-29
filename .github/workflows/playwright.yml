@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: lts/*
 
-      # 1. Instala dependências e inicia o servidor da aplicação na pasta app
+      # 1. Instala dependências e inicia a aplicação na pasta app
       - name: Install & Start Application
         run: |
           cd app
@@ -30,15 +30,15 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # 3. Aguarda o servidor responder com timeout estendido e verificação direta
+      # 3. Aguarda o servidor responder na porta 5174
       - name: Wait for Server
         run: npx wait-on http://127.0.0.1:5174 --timeout 90000
 
-      # 4. Executa a suíte de testes Playwright
+      # 4. Executa os testes do Playwright
       - name: Run Playwright tests
         run: npx playwright test
 
-      # 5. Salva o relatório HTML como artefato
+      # 5. Salva o relatório de testes em HTML
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
