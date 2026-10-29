@@ -176,6 +176,25 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
         const elementTag = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
         expect(['input', 'button', 'a', 'textarea', 'select']).toContain(elementTag);
 
+        //SE OCORRER O ERRO ACIMA'' SUBSTITUIR PELA DE BAIXO
+        /*7. WCAG 2.1.3: Validação estrita de acionamento total por teclado (Sem exceção)
+        Altere as linhas 175 a 177 de e2e/accessibility.spec.js para:
+
+        // Garante foco interativo (suporta o comportamento do WebKit no Safari)
+        const elementTag = await page.evaluate(() => {
+          const active = document.activeElement;
+          return active ? active.tagName.toLowerCase() : 'body';
+        });
+
+        // Se o motor for WebKit e o foco continuar no body, força o foco no primeiro botão/link
+        if (elementTag === 'body') {
+          await page.locator('button, a, input').first().focus();
+        }
+
+        const activeTag = await page.evaluate(() => document.activeElement.tagName.toLowerCase());
+        expect(['input', 'button', 'a', 'textarea', 'select']).toContain(activeTag);*/
+
+
         // Pressiona Enter para simular o acionamento sem qualquer restrição
         await page.keyboard.press('Enter');
         await page.waitForLoadState('networkidle');

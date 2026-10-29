@@ -5,15 +5,16 @@
   "main": "index.js",
   "scripts": {
     "test:clean-snapshots": "powershell -Command \"Remove-Item -Recurse -Force e2e/*-snapshots -ErrorAction SilentlyContinue\"",
-    "test:visual": "playwright test \"e2e/visual-regression.spec.js\" --headed",
-    "test:visual:update": "playwright test \"e2e/visual-regression.spec.js\" --update-snapshots",
+    "test:visual": "playwright test e2e/visual-regression.spec.js --headed",
+    "test:visual:update": "playwright test e2e/visual-regression.spec.js --update-snapshots",
     "test:desktop": "playwright test --project=\"Desktop Chrome\" --headed",
-    "test:accessibility": "playwright test \"e2e/accessibility.spec.js\" --headed --reporter=html && powershell -Command \"Invoke-Item .\\playwright-report\\index.html\"",
-    "test:keyboard": "playwright test \"e2e/accessibility-keyboard.spec.js\" --headed --reporter=html && powershell -Command \"Invoke-Item .\\playwright-report\\index.html\"",
-    "report:open": "powershell -Command \"Invoke-Item .\\playwright-report\\index.html\""
+    "test:accessibility": "playwright test e2e/accessibility.spec.js --headed",
+    "test:WCAG": "playwright test e2e/WCAG-accessibility.spec.js --headed",
+    "test:keyboard": "playwright test e2e/accessibility-keyboard.spec.js --headed",
+    "report:open": "npx playwright show-report"
   },
   "devDependencies": {
-    "@axe-core/playwright": "^4.10.0",
+    "@axe-core/playwright": "^4.14.0",
     "@playwright/test": "^1.40.0"
   }
 }
