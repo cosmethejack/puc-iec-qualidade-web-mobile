@@ -10,7 +10,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // texto (visível ou não) para identificar o conteúdo (inclusive captcha, por exemplo).
 
     test('1. Auditoria Estática: Deve validar violações do DOM e WCAG 1.1.1', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        //await page.goto('http://localhost:5174/');
+        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
 
         const accessibilityResults = await new AxeBuilder({ page })
@@ -29,7 +30,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     //Nota: ver junto com critérios 2.1.2 (A) e 2.1.3 (AAA).
 
     test('2. Jornada Interativa: Deve realizar login e navegação usando apenas o teclado', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        //await page.goto('http://localhost:5174/');
+        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
 
         // Login via teclado
@@ -53,7 +55,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // Ao se aplicar zoom de até 200% na tela, deve ocorrer a responsividade dos textos apresentados de forma que sua leitura e legibilidade continuem adequados sem qualquer quebra na apresentação das informações.
 
     test('3. WCAG 1.4.4: Redimensionar texto (Zoom de até 200%)', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        //await page.goto('http://localhost:5174/');
+        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
 
         // Aplica o zoom de 200% na tela via CSS
@@ -79,7 +82,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
         // Redimensiona a janela para simular o zoom de 400% na viewport padrão (1280px / 4 = 320px)
         await page.setViewportSize({ width: 320, height: 256 });
 
-        await page.goto('http://localhost:5174/');
+        //await page.goto('http://localhost:5174/');
+        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
         /*erro firefox 400 este comando networkidle aguarda a interrupção de toda atividade de rede antes de continuar a execução.
         No Firefox, conexões em segundo plano podem impedir que esse estado seja alcançado, causando timeout mesmo com a página 

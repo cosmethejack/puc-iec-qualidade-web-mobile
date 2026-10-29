@@ -4,7 +4,8 @@ test.describe('Acessibilidade Prática - Navegação por Teclado (WCAG 2.1.1)', 
 
     test('Deve realizar login e navegar por teclado no CineFav', async ({ page }) => {
         // 1. Navega para a aplicação local na porta 5174
-        await page.goto('http://localhost:5174/');
+        //await page.goto('http://localhost:5174/');
+        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
 
         console.log('\n--- INICIANDO NAVEGAÇÃO POR TECLADO ---');
