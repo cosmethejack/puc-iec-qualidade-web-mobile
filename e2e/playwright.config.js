@@ -12,16 +12,16 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   /* Tenta novamente em caso de falha no CI */
   retries: process.env.CI ? 2 : 0,
-  /* Limita workers no CI para evitar sobrecarga no container */
+  /* Limita a 1 worker no CI para evitar gargalos de CPU na máquina do GitHub */
   workers: process.env.CI ? 1 : undefined,
-  /* Gera relatório HTML */
+  /* Reporter HTML */
   reporter: 'html',
 
   use: {
-    /* Define a URL base alinhada com a porta 5174 */
+    /* Define a URL base para se conectar ao IP do container */
     baseURL: 'http://127.0.0.1:5174',
 
-    /* Coleta trace em caso de falha */
+    /* Coleta de rastros em falhas */
     trace: 'on-first-retry',
   },
 

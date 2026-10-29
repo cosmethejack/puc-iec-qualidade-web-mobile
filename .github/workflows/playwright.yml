@@ -16,12 +16,12 @@ jobs:
         with:
           node-version: lts/*
 
-      # 1. Instala dependências da aplicação na pasta 'app' e força a execução na porta 5174
+      # 1. Instala dependências e inicia o servidor da aplicação na pasta app
       - name: Install & Start Application
         run: |
           cd app
           npm ci
-          npm run dev -- --host 0.0.0.0 --port 5174 --strictPort &
+          npm run dev &
 
       # 2. Instala dependências do projeto de testes Playwright
       - name: Install Test Dependencies
@@ -30,15 +30,15 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # 3. Aguarda a aplicação responder na porta 5174
+      # 3. Aguarda o servidor responder com timeout estendido e verificação direta
       - name: Wait for Server
-        run: npx wait-on http://127.0.0.1:5174 --timeout 60000
+        run: npx wait-on http://127.0.0.1:5174 --timeout 90000
 
       # 4. Executa a suíte de testes Playwright
       - name: Run Playwright tests
         run: npx playwright test
 
-      # 5. Salva o relatório HTML como artefato do workflow
+      # 5. Salva o relatório HTML como artefato
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
