@@ -10,8 +10,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // texto (visível ou não) para identificar o conteúdo (inclusive captcha, por exemplo).
 
     test('1. Auditoria Estática: Deve validar violações do DOM e WCAG 1.1.1', async ({ page }) => {
+        await page.goto('/');
         //await page.goto('http://localhost:5174/');
-        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
 
         const accessibilityResults = await new AxeBuilder({ page })
@@ -30,8 +30,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     //Nota: ver junto com critérios 2.1.2 (A) e 2.1.3 (AAA).
 
     test('2. Jornada Interativa: Deve realizar login e navegação usando apenas o teclado', async ({ page }) => {
+        await page.goto('/');
         //await page.goto('http://localhost:5174/');
-        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
 
         // Login via teclado
@@ -55,8 +55,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // Ao se aplicar zoom de até 200% na tela, deve ocorrer a responsividade dos textos apresentados de forma que sua leitura e legibilidade continuem adequados sem qualquer quebra na apresentação das informações.
 
     test('3. WCAG 1.4.4: Redimensionar texto (Zoom de até 200%)', async ({ page }) => {
+        await page.goto('/');
         //await page.goto('http://localhost:5174/');
-        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
 
         // Aplica o zoom de 200% na tela via CSS
@@ -82,8 +82,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
         // Redimensiona a janela para simular o zoom de 400% na viewport padrão (1280px / 4 = 320px)
         await page.setViewportSize({ width: 320, height: 256 });
 
+        await page.goto('/');
         //await page.goto('http://localhost:5174/');
-        await page.goto('/'); //para funcionar a pipeline
         await page.waitForLoadState('networkidle');
         /*erro firefox 400 este comando networkidle aguarda a interrupção de toda atividade de rede antes de continuar a execução.
         No Firefox, conexões em segundo plano podem impedir que esse estado seja alcançado, causando timeout mesmo com a página 
@@ -115,7 +115,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // Todas as funcionalidades devem ser acionadas via teclado, inclusive ao alternar com múltiplos dispositivos de entrada (ex: mouse e teclado simultâneos).
 
     test('5. WCAG 2.1.1 & 2.5.6: Funcionalidades totalmente acessíveis via teclado e entradas simultâneas', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        await page.goto('/');
+        //await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
 
         // 1. Simula entrada de ponteiro (mouse/toque) inicial no campo de login
@@ -136,7 +137,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // Ao se interagir via teclado, a navegação por todos os elementos "clicáveis" deve ocorrer sem que haja bloqueios ou interrupções (trava de foco / keyboard trap).
 
     test('6. WCAG 2.1.2: Ausência de armadilha ou bloqueio de foco no teclado (Keyboard Trap)', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        await page.goto('/');
+        //await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
 
         // Navega sequencialmente por múltiplos elementos interativos
@@ -163,7 +165,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // Todas as funcionalidades devem ser acionadas via teclado, sem exceção (atende também o critério 2.1.1).
 
     test('7. WCAG 2.1.3: Validação estrita de acionamento total por teclado (Sem exceção)', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        await page.goto('/');
+        //await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
 
         // Foca no primeiro elemento clicável/interativo
@@ -183,7 +186,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // A página possui um título claro, descritivo e apropriado que identifica seu objetivo.
 
     test('8. WCAG 2.4.2: Presença de título de página apropriado e não vazio (<title>)', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        await page.goto('/');
+        //await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
 
         const pageTitle = await page.title();
@@ -196,7 +200,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // A ordem de navegação no DOM é lógica e preserva o significado do conteúdo quando lida sequencialmente.
 
     test('9. WCAG 1.3.2: Validação da estrutura sequencial legível no DOM (Meaningful Sequence)', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        await page.goto('/');
+        //await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
 
         // Inspeciona se a hierarquia de tags principais (header, main/form, footer) segue uma ordem ordinal válida
@@ -213,7 +218,8 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     // Garantir que animações e conteúdos piscantes ou em movimento respeitem limites seguros e suporte a prefers-reduced-motion.
 
     test('10. WCAG 2.2.2 & 2.3.1: Controle de animações contínuas e limite seguro de elementos piscantes', async ({ page }) => {
-        await page.goto('http://localhost:5174/');
+        await page.goto('/');
+        //await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
 
         // Simula a preferência do sistema por redução de movimento (prefers-reduced-motion)

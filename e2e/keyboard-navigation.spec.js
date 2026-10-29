@@ -2,24 +2,21 @@ const { test, expect } = require('@playwright/test');
 
 test.describe('Acessibilidade Prática - Navegação por Teclado', () => {
 
-    test('Deve permitir login usando apenas teclado', async ({ page }) => {
+    test('Deve permitir interagir e adicionar item usando apenas o teclado (sem rato)', async ({ page }) => {
+        await page.goto('/');
+        //await page.goto('http://localhost:5174/');
 
-        await page.goto('http://localhost:5174/', {
-            waitUntil: 'load'
-        });
+        // 1. Foca o campo de entrada via teclado
+        const input = page.locator('.new-todo');
+        await input.focus();
 
-        const email = page.getByRole('textbox', { name: 'E-mail' });
-
-        await email.focus();
-
-        await page.keyboard.type('aluno@puc.br');
-        await page.keyboard.press('Tab');
-
-        await page.keyboard.type('1234');
-        await page.keyboard.press('Tab');
-
+        // 2. Simula a digitação e a tecla Enter para submeter
+        await page.keyboard.type('Testando acessibilidade via teclado');
         await page.keyboard.press('Enter');
 
+        // 3. Valida que o item foi adicionado com sucesso
+        const itemAdicionado = page.locator('.todo-list label');
+        await expect(itemAdicionado).toHaveText('Testando acessibilidade via teclado');
     });
 
 });

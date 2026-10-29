@@ -6,37 +6,35 @@ import { defineConfig, devices } from '@playwright/test';
  */
 export default defineConfig({
   testDir: './e2e',
-  /* Run tests in files in parallel */
+  /* Executa os testes em paralelo */
   fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
+  /* Falha no CI se houver test.only acidental */
   forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
+  /* Tenta novamente em caso de falha no CI */
   retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
+  /* Limita workers no CI para evitar sobrecarga no container */
   workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
+  /* Gera relatório HTML */
   reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Substitua a URL abaixo pela URL pública gerada pelo seu localtunnel ou ngrok */
-    baseURL: 'https://tasty-hairs-brake.loca.lt',
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
+  use: {
+    /* Define a URL base alinhada com a porta 5174 */
+    baseURL: 'http://127.0.0.1:5174',
+
+    /* Coleta trace em caso de falha */
     trace: 'on-first-retry',
   },
 
-  /* Configure projects for major browsers */
+  /* Configuração dos navegadores para execução */
   projects: [
     {
       name: 'chromium',
       use: { ...devices['Desktop Chrome'] },
     },
-
     {
       name: 'firefox',
       use: { ...devices['Desktop Firefox'] },
     },
-
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },
