@@ -1,0 +1,20 @@
+[
+    {
+        "id": 101,
+        "title": "Filme QA Demo 1",
+        "overview": "Sinopse do filme de teste para o ambiente QA offline.",
+        "poster_path": "/mock-poster1.jpg",
+        "backdrop_path": "/mock-backdrop1.jpg",
+        "vote_average": 8.5,
+        "release_date": "2024-01-01"
+    },
+    {
+        "id": 102,
+        "title": "Filme QA Demo 2",
+        "overview": "Sinopse do segundo filme de teste.",
+        "poster_path": "/mock-poster2.jpg",
+        "backdrop_path": "/mock-backdrop2.jpg",
+        "vote_average": 7.9,
+        "release_date": "2024-02-01"
+    }
+]
