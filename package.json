@@ -1,28 +1,19 @@
 {
   "name": "seminario-qualidade-cinefav",
   "version": "1.0.0",
-  "description": "",
+  "description": "Demonstração de testes de regressão visual e acessibilidade no CineFav",
   "main": "index.js",
-  "directories": {
-    "doc": "docs",
-    "test": "tests"
+  "scripts": {
+    "test:clean-snapshots": "powershell -Command \"Remove-Item -Recurse -Force e2e/*-snapshots -ErrorAction SilentlyContinue\"",
+    "test:visual": "playwright test \"e2e/visual-regression.spec.js\" --headed",
+    "test:visual:update": "playwright test \"e2e/visual-regression.spec.js\" --update-snapshots",
+    "test:desktop": "playwright test --project=\"Desktop Chrome\" --headed",
+    "test:accessibility": "playwright test \"e2e/accessibility.spec.js\" --headed --reporter=html && powershell -Command \"Invoke-Item .\\playwright-report\\index.html\"",
+    "test:keyboard": "playwright test \"e2e/accessibility-keyboard.spec.js\" --headed --reporter=html && powershell -Command \"Invoke-Item .\\playwright-report\\index.html\"",
+    "report:open": "powershell -Command \"Invoke-Item .\\playwright-report\\index.html\""
   },
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/cosmethejack/seminario-qualidade-cinefav.git"
-  },
-  "keywords": [],
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/cosmethejack/seminario-qualidade-cinefav/issues"
-  },
-  "homepage": "https://github.com/cosmethejack/seminario-qualidade-cinefav#readme",
   "devDependencies": {
-    "@playwright/test": "^1.64.1",
-    "@types/node": "^26.6.5"
-  },
-  "dependencies": {
-    "@axe-core/playwright": "^4.14.0"
+    "@axe-core/playwright": "^4.10.0",
+    "@playwright/test": "^1.40.0"
   }
 }

@@ -1,0 +1,28 @@
+{
+  "name": "seminario-qualidade-cinefav",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs",
+    "test": "tests"
+  },
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cosmethejack/seminario-qualidade-cinefav.git"
+  },
+  "keywords": [],
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cosmethejack/seminario-qualidade-cinefav/issues"
+  },
+  "homepage": "https://github.com/cosmethejack/seminario-qualidade-cinefav#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.5"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.14.0"
+  }
+}
