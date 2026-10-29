@@ -22,19 +22,6 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # 1. Gera os arquivos estáticos na pasta dist/
-      - name: Build project
-        run: npx vite build
-
-      # 2. Sobe a pasta dist estática com o pacote 'serve'
-      - name: Serve build in background
-        run: npx serve -s dist -l 5174 &
-
-      # 3. Aguarda o servidor responder na porta 5174
-      - name: Wait for Server
-        run: npx wait-on http://127.0.0.1:5174 --timeout 60000
-
-      # 4. Executa os testes
       - name: Run Playwright tests
         run: npx playwright test
 
