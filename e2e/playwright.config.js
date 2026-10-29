@@ -44,14 +44,14 @@ export default defineConfig({
     },
 
 
-    // Configuração para subir o servidor da aplicação automaticamente
+    /*// Configuração para subir o servidor da aplicação automaticamente
     webServer: {
       command: 'npm run dev', // Ou 'npm run start' / 'npm run preview'
       url: 'http://localhost:5174',
       reuseExistingServer: !process.env.CI, // Reutiliza servidor local se já estiver rodando
       timeout: 120 * 1000, // Tempo máximo de espera para o servidor subir (2 minutos)
     },
-
+*/
 
     /* Test against mobile viewports. */
     // {
