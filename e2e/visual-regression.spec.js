@@ -1,14 +1,11 @@
 import { test, expect } from '@playwright/test';
 
-test('Validação de Regressão Visual - CineFav', async ({ page }) => {
-    // 1. Navega para a URL local da aplicação CineFav
-    await page.goto('http://localhost:5174/');
+test('3. Validação de Regressão Visual - CineFav', async ({ page }) => {
+  await page.goto('http://localhost:5174/');
+  await page.waitForLoadState('networkidle');
 
-    // 2. Aguarda o carregamento do elemento principal ou da página inteira
-    await page.waitForLoadState('networkidle');
-
-    // 3. Captura o screenshot da página e compara com a baseline
-    await expect(page).toHaveScreenshot('cinefav-home.png', {
-        fullPage: true, // Garante que tira print da tela completa
-    });
+  // Compara a tela atual com a foto baseline salva no disco
+  await expect(page).toHaveScreenshot('cinefav-home.png', {
+    fullPage: true,
+  });
 });

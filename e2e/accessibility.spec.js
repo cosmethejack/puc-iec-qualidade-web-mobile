@@ -78,8 +78,25 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
     test('4. WCAG 1.4.10: Realinhar / Reflow (Zoom de 400% sem scroll horizontal)', async ({ page }) => {
         // Redimensiona a janela para simular o zoom de 400% na viewport padrão (1280px / 4 = 320px)
         await page.setViewportSize({ width: 320, height: 256 });
+
         await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
+        /*erro firefox 400 este comando networkidle aguarda a interrupção de toda atividade de rede antes de continuar a execução.
+        No Firefox, conexões em segundo plano podem impedir que esse estado seja alcançado, causando timeout mesmo com a página 
+        já carregada.*/
+
+
+        /*código para evitar erro firefox redimens 400%
+        await page.goto('http://localhost:5174/', {
+            waitUntil: 'load'
+        });
+        O evento load apenas aguarda o carregamento completo da página e de seus principais recursos, 
+        sem depender da ausência total de tráfego de rede.
+        Resultado: o teste ficou mais estável e compatível entre navegadores, eliminando falsos erros no Firefox.
+         Além disso, a alteração está mais alinhada ao objetivo da validação WCAG 1.4.10, 
+         que verifica o comportamento visual da página (reflow) e não o estado da rede.
+       */
+
 
         // Avalia se o tamanho do conteúdo excede a largura da tela gerando barra de rolagem horizontal
         const temScrollHorizontal = await page.evaluate(() => {
