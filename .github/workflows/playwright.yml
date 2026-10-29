@@ -22,15 +22,15 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      # 1. Sobe a aplicação em segundo plano diretamente na pipeline
+      # 1. Inicia o servidor Vite na porta 5174 escutando em todas as interfaces (0.0.0.0)
       - name: Start Application Server
-        run: npx vite --port 5174 &
+        run: npm run dev -- --host 0.0.0.0 --port 5174 &
 
-      # 2. Aguarda a porta 5174 responder antes de liberar os testes
+      # 2. Aguarda a aplicação responder no IP local
       - name: Wait for Server
         run: npx wait-on http://127.0.0.1:5174 --timeout 60000
 
-      # 3. Executa os testes com o servidor já ativo
+      # 3. Executa os testes
       - name: Run Playwright tests
         run: npx playwright test
 
