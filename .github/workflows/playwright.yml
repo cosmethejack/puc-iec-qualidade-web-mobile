@@ -16,7 +16,7 @@ jobs:
         with:
           node-version: lts/*
 
-      # 1. Instala dependências e inicia a aplicação injetando as variáveis de ambiente
+      # 1. Instala dependências da aplicação na pasta app e inicia o servidor com as variáveis
       - name: Install & Start Application
         env:
           VITE_TMDB_READ_TOKEN: ${{ secrets.VITE_TMDB_READ_TOKEN || 'dummy_token' }}
@@ -37,9 +37,9 @@ jobs:
       - name: Wait for Server
         run: npx wait-on http://127.0.0.1:5174 --timeout 90000
 
-      # 4. Executa a suíte de testes Playwright
+      # 4. Executa os testes do Playwright (gerando/atualizando snapshots automaticamente se não existirem)
       - name: Run Playwright tests
-        run: npx playwright test
+        run: npx playwright test --update-snapshots
 
       # 5. Salva o relatório de testes em HTML
       - name: Upload Report

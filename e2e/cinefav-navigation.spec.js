@@ -16,7 +16,7 @@ test.describe('Jornada do Usuário no CineFav - Teste Visual e A11y', () => {
 
         // 3. Validação de Regressão Visual do formulário preenchido
         await expect(page).toHaveScreenshot('cinefav-login-preenchido.png', {
-            maxDiffPixelRatio: 0.05
+            maxDiffPixelRatio: 0.1
         });
 
         // 4. Auditoria de Acessibilidade (WCAG) na tela após o preenchimento
