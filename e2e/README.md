@@ -1,45 +1,78 @@
-// @ts-check
-import { defineConfig, devices } from '@playwright/test';
+# 🧪 Seminário Técnico: Qualidade em Aplicações Web e Mobile
+**Curso:** Pós-Graduação PUC Minas IEC - Qualidade em Aplicações Web e Mobile  
+**Data:** Outubro de 2026  
+**Professor:** Jackson Smith Moisés Matias  
 
-/**
- * @see https://playwright.dev/docs/test-configuration
- */
-export default defineConfig({
-  testDir: './e2e',
-  /* Run tests in files in parallel */
-  fullyParallel: true,
-  /* Fail the build on CI if you accidentally left test.only in the source code. */
-  forbidOnly: !!process.env.CI,
-  /* Retry on CI only */
-  retries: process.env.CI ? 2 : 0,
-  /* Opt out of parallel tests on CI. */
-  workers: process.env.CI ? 1 : undefined,
-  /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: 'html',
-  /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
-  use: {
-    /* Substitua a URL abaixo pela URL pública gerada pelo seu localtunnel ou ngrok */
-    baseURL: 'https://COLOQUE-SUA-URL-DO-TUNNEL-AQUI.loca.lt',
+---
 
-    /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-    trace: 'on-first-retry',
-  },
+## 📌 1. Recorte do Projeto
+> *"Auditoria automatizada de acessibilidade (WCAG 2.2) e testes de regressão visual no CineFav Web/TodoMVC para identificar e corrigir falhas de interface e inclusão."*
 
-  /* Configure projects for major browsers */
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
+* **Trilha:** Web / Acessibilidade (A11y) + Regressão Visual  
+* **Objetivo:** Garantir a conformidade visual e de acessibilidade da interface web utilizando ferramentas 100% gratuitas e sem dependência de serviços pagos.
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+---
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-  ],
-});
+## 🛠️ 2. Ferramentas Utilizadas
+* **[Playwright](https://playwright.dev/):** Automação de testes End-to-End e suíte de regressão visual nativa (`toHaveScreenshot`).
+* **[@axe-core/playwright](https://www.npmjs.com/package/@axe-core/playwright):** Motor de auditoria automatizada de acessibilidade baseado nas diretrizes WCAG 2.2 (níveis A e AA).
+* **Node.js:** Ambiente de execução para os testes.
+
+---
+
+## 🚀 3. Instruções de Reprodutibilidade (Como Executar)
+
+Siga os passos abaixo para clonar e rodar o projeto na sua máquina local:
+
+### **Pré-requisitos**
+* Node.js v18 ou superior instalado.
+* Git instalado.
+
+### **Passo a Passo**
+
+1. **Clonar o repositório:**
+   ```bash
+   git clone [https://github.com/SEU_USUARIO/seminario-qualidade-cinefav.git](https://github.com/SEU_USUARIO/seminario-qualidade-cinefav.git)
+   cd seminario-qualidade-cinefav
+
+   Instalar as dependências do projeto:
+
+Bash
+npm install
+Instalar os navegadores do Playwright:
+
+Bash
+npx playwright install
+Executar a Auditoria de Acessibilidade (Axe-Core):
+
+Bash
+npx playwright test e2e/accessibility.spec.js --headed
+Gerar os Screenshots de Referência (Baseline Visual):
+
+Bash
+npx playwright test e2e/visual-regression.spec.js --update-snapshots
+Executar os Testes de Regressão Visual (Comparação):
+
+Bash
+npx playwright test e2e/visual-regression.spec.js
+Visualizar o Relatório Gráfico em HTML:
+
+Bash
+npx playwright show-report
+🤖 4. Declaração do Uso de Inteligência Artificial
+Em conformidade com as regras do Seminário Técnico:
+
+Ferramenta de IA Utilizada: ChatGPT / Gemini / Copilot
+
+Como foi aplicada: Auxílio na estruturação inicial dos cenários de teste com AxeBuilder, configuração do ambiente de testes no Playwright e elaboração da documentação técnica de reprodutibilidade.
+
+Compreensão do Grupo: O código gerado foi revisado, executado e validado manualmente pela equipe.
+
+👥 5. Integrantes do Grupo e Contribuições
+(Verifique o histórico de commits no repositório para evidência de contribuição individual)
+
+Integrante 1 - [Damiao] @usuario_github)
+
+Integrante 2 - [Alice] (@usuario_github)
+
+Integrante 3 - [Luiz] (@usuario_github)

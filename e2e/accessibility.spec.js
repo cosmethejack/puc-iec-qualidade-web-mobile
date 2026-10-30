@@ -241,8 +241,13 @@ test.describe('Suíte Unificada de Acessibilidade (WCAG 2.2) - CineFav', () => {
         //await page.goto('http://localhost:5174/');
         await page.waitForLoadState('networkidle');
 
-        // Simula a preferência do sistema por redução de movimento (prefers-reduced-motion)
+
+        /*Algumas pessoas sentem tontura, enjoo ou crises de labirintite com animações complexas, 
+        transições suaves, carrosséis automáticos ou efeitos de parallax em sites. 
+        Nos seus dispositivos, elas ativam a opção de "Reduzir movimento".*/
         await page.emulateMedia({ reducedMotion: 'reduce' });
+
+
 
         // Verifica se existem elementos piscantes com frequências inseguras no CSS
         const temAnimacaoInsegura = await page.evaluate(() => {
