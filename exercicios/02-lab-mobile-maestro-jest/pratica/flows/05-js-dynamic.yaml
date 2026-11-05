@@ -44,6 +44,7 @@ appId: com.puciec.cinefav
 # Validar resultado
 - assertVisible:
     text: "${output.termo}"
+    
 # TODO: faça login
 # TODO: use evalScript pra sortear um título e gravar em output.termo, ex:
 #   - evalScript: ${output.termo = ['Matrix', 'Avatar', 'Interestelar'][Math.floor(Math.random() * 3)]}

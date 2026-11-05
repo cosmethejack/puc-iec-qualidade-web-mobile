@@ -2,9 +2,14 @@
 #
 # Abre o app, faz login e confirma que a lista de filmes apareceu.
 # O app abre na tela de Login — todo flow precisa logar antes de chegar na lista.
+
+
+
 appId: com.puciec.cinefav
+
 ---
 - launchApp
+
 - tapOn:
     id: "login-email-input"
 - inputText: "aluno@puc.br"
